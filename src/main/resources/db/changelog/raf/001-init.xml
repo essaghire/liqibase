@@ -1,0 +1,130 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <preConditions>
+        <runningAs username="raf"/>
+    </preConditions>
+
+
+    <changeSet author="raf" id="v001.001">
+        <createTable tableName="CREANCE">
+            <column name="ID_CREANCE" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CREANCE"/>
+            </column>
+            <column name="ID_EMETTEUR" type="NUMBER(2, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID_CREANCE_EMETTEUR" type="VARCHAR2(15 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NUM_COMPTE_EMETTEUR" type="VARCHAR2(7 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE_MOTIF" type="VARCHAR2(2 BYTE)"/>
+            <column name="CODE_DEBIT_INITIAL" type="NUMBER(1, 0)"/>
+            <column name="DATE_DEBUT_PERIODE" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATE_FIN_PERIODE" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATE_MAJ_ORIGINE" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SPEC_PERIODE_EMETTEUR" type="VARCHAR2(4 BYTE)"/>
+            <column name="STATUT" type="NUMBER(1, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="raf" id="v001.002">
+        <createTable tableName="LIEN">
+            <column name="ID_LIEN" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_LIEN"/>
+            </column>
+            <column name="ID_CREANCE_SOURCE" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID_CREANCE_CIBLE" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NATURE_LIEN" type="NUMBER(1, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="raf" id="v001.003">
+        <createTable tableName="MONTANT">
+            <column name="ID_MONTANT" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_MONTANT"/>
+            </column>
+            <column name="ID_CREANCE" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID_MOUVEMENT" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NATURE_MONTANT" type="NUMBER(2, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MONTANT" type="NUMBER(22, 13)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="raf" id="v001.004">
+        <createTable tableName="MOUVEMENT">
+            <column name="ID_MOUVEMENT" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_MOUVEMENT"/>
+            </column>
+            <column name="ID_MOUVEMENT_EMETTEUR" type="NUMBER(9, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMPL_ID_MOUV_EMETTEUR" type="NUMBER(2, 0)"/>
+            <column name="CODE_OPERATION" type="NUMBER(2, 0)"/>
+            <column name="CODE_ORIGINE" type="VARCHAR2(1 BYTE)"/>
+            <column name="DATE_EFFET" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATE_TRAITEMENT_EMETTEUR" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATE_MAJ_ORIGINE" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATUT" type="NUMBER(1, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="raf" id="v001.005">
+        <createIndex indexName="IDX-ID-CREANCE" tableName="MONTANT">
+            <column name="ID_CREANCE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="raf" id="v001.006">
+        <createIndex indexName="IDX-ID-MOUVEMENT" tableName="MONTANT">
+            <column name="ID_MOUVEMENT"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="raf" id="v001.007">
+        <createIndex indexName="IDX-ID_CREANCE_EMETTEUR" tableName="CREANCE">
+            <column name="ID_CREANCE_EMETTEUR"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="raf" id="v001.008">
+        <addForeignKeyConstraint baseColumnNames="ID_CREANCE_CIBLE" baseTableName="LIEN" constraintName="FK_LIEN_CREANCE_CIBLE" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="ID_CREANCE" referencedTableName="CREANCE" validate="true"/>
+    </changeSet>
+    <changeSet author="raf" id="v001.009">
+        <addForeignKeyConstraint baseColumnNames="ID_CREANCE_SOURCE" baseTableName="LIEN" constraintName="FK_LIEN_CREANCE_SOURCE" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="ID_CREANCE" referencedTableName="CREANCE" validate="true"/>
+    </changeSet>
+    <changeSet author="raf" id="v001.010">
+        <addForeignKeyConstraint baseColumnNames="ID_CREANCE" baseTableName="MONTANT" constraintName="FK_MONTANT_CREANCE" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="ID_CREANCE" referencedTableName="CREANCE" validate="true"/>
+    </changeSet>
+    <changeSet author="raf" id="v001.011">
+        <addForeignKeyConstraint baseColumnNames="ID_MOUVEMENT" baseTableName="MONTANT" constraintName="FK_MONTANT_MOUVEMENT" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID_MOUVEMENT" referencedTableName="MOUVEMENT" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <preConditions>
+        <runningAs username="raf"/>
+    </preConditions>
+
+    <changeSet author="raf" id="v002.013" logicalFilePath="raf" context="preload">
+        <renameColumn
+                columnDataType="INTEGER" newColumnName="CODE_EMETTEUR" oldColumnName="ID_EMETTEUR" tableName="CREANCE"/>
+    </changeSet>
+
+    <changeSet author="raf" id="v002.014" logicalFilePath="raf" context="preload">
+        <addColumn tableName="CREANCE">
+            <column name="CODE_ORGANISME" type="varchar(3 BYTE)" defaultValue="">
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="raf" id="v002.015" logicalFilePath="raf" context="preload">
+        <renameColumn
+                columnDataType="VARCHAR(18 BYTE)" newColumnName="NUMERO_COMPTE_EXTERNE" oldColumnName="NUM_COMPTE_EMETTEUR" tableName="CREANCE"/>
+    </changeSet>
+
+</databaseChangeLog>

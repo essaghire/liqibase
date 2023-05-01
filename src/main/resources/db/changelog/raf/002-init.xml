@@ -1,0 +1,111 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <preConditions>
+        <runningAs username="raf"/>
+    </preConditions>
+
+    <changeSet author="raf" id="v001.012">
+        <createTable tableName="ANOMALIE">
+            <column name="ID_ANOMALIE_UID" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ANOMALIE"/>
+            </column>
+            <column name="ECNG_CLE" type="NUMBER(15, 0)"/>
+            <column name="HECN_UID" type="NUMBER(9, 0)"/>
+            <column name="NUM_HISTO" type="NUMBER(8, 0)"/>
+            <column name="CODE_ANOMALIE" type="VARCHAR2(50 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LIBELLE_ANOMALIE" type="VARCHAR2(200 BYTE)"/>
+            <column name="DATE_MAJ_ORIGINE" type="date"/>
+            <column name="DATE_CREATION" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="raf" id="v001.013">
+        <createTable remarks="ECNG en attente de recyclage" tableName="ECNG_ATTENTE_RECYCL">
+            <column name="ECNG_EN_ATTENTE_RECYCLAGE_UID" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ECNG"/>
+            </column>
+            <column name="ECNG_CLE" type="NUMBER(15, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ECNG_MTF_ECNG" type="VARCHAR2(2 BYTE)"/>
+            <column name="ECNG_CD_MOD_DBT" type="NUMBER(1, 0)"/>
+            <column name="ECNG_DT_MAJ_TAB" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATE_REALISATION" type="date"/>
+            <column name="NATURE_OPERATION" type="VARCHAR2(1 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="raf" id="v001.014">
+        <createTable remarks="HECN en attente de recyclage" tableName="HECN_ATTENTE_RECYCL">
+            <column name="HECN_EN_ATTENTE_RECYCLAGE_UID" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_HECN"/>
+            </column>
+            <column name="HECN_ECNG_CLE" type="NUMBER(15, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HECN_NO_HIST" type="NUMBER(2, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HECN_DT_MOD_ECNG" type="NUMBER(7, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HECN_DT_TRT_HECN" type="NUMBER(7, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HECN_CD_OPE_HECN" type="NUMBER(2, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HECN_ORI_OPE_FORF" type="VARCHAR2(1 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="HECN_MT_PO" type="NUMBER(13, 0)"/>
+            <column name="HECN_MT_PP" type="NUMBER(13, 0)"/>
+            <column name="HECN_MT_TRP" type="NUMBER(13, 0)"/>
+            <column name="HECN_MT_MR" type="NUMBER(13, 0)"/>
+            <column name="HECN_MT_PEN" type="NUMBER(13, 0)"/>
+            <column name="HECN_MT_FJ" type="NUMBER(13, 0)"/>
+            <column name="HECN_MT_IRC" type="NUMBER(13, 0)"/>
+            <column name="HECN_MT_FTE_INX" type="NUMBER(13, 0)"/>
+            <column name="HECN_DT_MAJ_TAB" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATE_REALISATION" type="date"/>
+            <column name="HECN_UID" type="NUMBER(9, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NATURE_OPERATION" type="VARCHAR2(1 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="raf" id="v001.015">
+        <createTable remarks="Regul TO en attente de recyclage" tableName="REGUL_TO_ATTENTE_RECYCL">
+            <column name="ID_REGUL_TO_UID" type="VARCHAR2(36 BYTE)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_REGUL_TO"/>
+            </column>
+            <column name="NO_ECNG" type="NUMBER(15, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NO_ECNG_REGUL" type="NUMBER(15, 0)"/>
+            <column name="NO_ECNG_REGUL_SUP" type="NUMBER(15, 0)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="raf" id="v001.016">
+        <createIndex indexName="IDX-ECNG-CLE" tableName="ECNG_ATTENTE_RECYCL">
+            <column name="ECNG_CLE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="raf" id="v001.017">
+        <createIndex indexName="IDX-HECN-ECNG-CLE" tableName="HECN_ATTENTE_RECYCL">
+            <column name="HECN_ECNG_CLE"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

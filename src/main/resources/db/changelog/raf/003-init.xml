@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <preConditions>
+        <runningAs username="raf"/>
+    </preConditions>
+
+    <changeSet author="raf" id="v001.018">
+        <createIndex indexName="IDX-ID_MOUVEMENT_EMETTEUR" tableName="MOUVEMENT">
+            <column name="ID_MOUVEMENT_EMETTEUR"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="raf" id="v001.019">
+        <createIndex indexName="IDX-ID_EMETTEUR" tableName="CREANCE">
+            <column name="ID_EMETTEUR"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

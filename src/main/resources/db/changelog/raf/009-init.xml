@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <preConditions>
+        <runningAs username="raf"/>
+    </preConditions>
+
+    <changeSet author="raf" id="v002.019" logicalFilePath="raf" context="preload">
+        <modifyDataType
+                columnName="CODE_EMETTEUR" newDataType="VARCHAR(64 BYTE)" tableName="CREANCE" />
+    </changeSet>
+
+
+
+    <changeSet author="raf" id="v002.020" logicalFilePath="raf" context="preload">
+        <modifyDataType
+                columnName="STATUT" newDataType="VARCHAR(64 BYTE)" tableName="CREANCE"/>
+    </changeSet>
+    <changeSet author="raf" id="v002.021" logicalFilePath="raf" context="preload">
+        <modifyDataType
+                columnName="STATUT" newDataType="VARCHAR(64 BYTE)" tableName="MOUVEMENT"/>
+    </changeSet>
+
+
+    <changeSet author="raf" id="v002.022" logicalFilePath="raf" context="preload">
+        <modifyDataType
+                columnName="NUM_COMPTE_GESTION" newDataType="VARCHAR(18 BYTE)" tableName="CREANCE"/>
+    </changeSet>
+
+
+    <changeSet author="raf" id="v002.023" logicalFilePath="raf" context="preload">
+        <modifyDataType tableName="ECNG_ATTENTE_RECYCL" columnName="ECNG_NO_INT_CPT" newDataType="VARCHAR(18 BYTE)"/>
+    </changeSet>
+
+</databaseChangeLog>

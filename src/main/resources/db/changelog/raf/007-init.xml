@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <preConditions>
+        <runningAs username="raf"/>
+    </preConditions>
+
+    <changeSet author="raf" id="v002.016" logicalFilePath="raf" context="preload">
+        <addColumn tableName="ECNG_ATTENTE_RECYCL">
+            <column name="NUMERO_COMPTE_EXTERNE" type="VARCHAR(18 BYTE)">
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="raf" id="v002.017" logicalFilePath="raf" context="preload">
+        <addColumn tableName="ECNG_ATTENTE_RECYCL">
+            <column name="CODE_ORGANISME" type="VARCHAR(3 BYTE)">
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,75 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="raf" id="v002.003" logicalFilePath="raf" context="preload">
+        <addColumn tableName="ECNG_ATTENTE_RECYCL">
+            <column name="COMPTEUR_DE_TENTATIVES" type="NUMERIC(8)" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="raf" id="v002.004" logicalFilePath="raf" context="preload">
+        <addColumn tableName="ECNG_ATTENTE_RECYCL">
+            <column name="DATE_CREATION" type="DATE" defaultValueDate="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="raf" id="v002.005" logicalFilePath="raf" context="preload">
+        <addColumn tableName="ECNG_ATTENTE_RECYCL">
+            <column name="MOTIF_MISE_EN_ATTENTE" type="NUMERIC(3)" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="raf" id="v002.006" logicalFilePath="raf" context="preload">
+        <addColumn tableName="ECNG_ATTENTE_RECYCL">
+            <column name="ECNG_NO_INT_CPT" type="VARCHAR(7)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="raf" id="v002.007" logicalFilePath="raf" context="preload">
+        <addColumn tableName="ECNG_ATTENTE_RECYCL">
+            <column name="ID_BASE_EMETTEUR" type="VARCHAR(6)" defaultValue="SNV2">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+
+    <changeSet author="raf" id="v002.008" logicalFilePath="raf" context="preload">
+        <addColumn tableName="HECN_ATTENTE_RECYCL">
+            <column name="COMPTEUR_DE_TENTATIVES" type="NUMERIC(8)" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="raf" id="v002.009" logicalFilePath="raf" context="preload">
+        <addColumn tableName="HECN_ATTENTE_RECYCL">
+            <column name="DATE_CREATION" type="DATE" defaultValueDate="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="raf" id="v002.010" logicalFilePath="raf" context="preload">
+        <addColumn tableName="HECN_ATTENTE_RECYCL">
+            <column name="MOTIF_MISE_EN_ATTENTE" type="NUMERIC(3)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="raf" id="v002.011" logicalFilePath="raf" context="preload">
+        <addColumn tableName="REGUL_TO_ATTENTE_RECYCL">
+            <column name="COMPTEUR_DE_TENTATIVES" type="NUMERIC(8)" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="raf" id="v002.012" logicalFilePath="raf" context="preload">
+        <addColumn tableName="REGUL_TO_ATTENTE_RECYCL">
+            <column name="DATE_CREATION" type="DATE" defaultValueDate="current_timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
