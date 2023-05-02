@@ -5,7 +5,7 @@
                                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <preConditions>
-        <runningAs username="raf"/>
+        <runningAs username="sa"/>
     </preConditions>
 
     <changeSet author="raf" id="v001.012">

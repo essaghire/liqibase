@@ -7,3 +7,5 @@ databaseChangeLog:
       file: db/changelog/02-insert-data-books.xml
   - include:
       file: db/changelog/03-migrate-data.xml
+  - includeAll:
+      path: db/changelog/raf
